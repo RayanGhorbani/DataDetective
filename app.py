@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+import pandas as pd
+
 
 app = Flask(__name__)
 
@@ -15,6 +17,10 @@ def upload():
 
         dataset = request.files["dataset"]
         print(dataset.filename)
+
+        df = pd.read_csv(dataset)
+
+        print(df.head(10))
         
     return render_template("upload.html")
 
